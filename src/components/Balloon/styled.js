@@ -2,17 +2,45 @@ import styled from 'styled-components';
 
 export const BalloonContainer = styled.div`
   background-color: var(--color-white);
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
   padding: 20px;
-  min-width: 200px;
+  min-width: 250px;
   max-width: 400px;
   border-radius: 20px;
   position: relative;
-`;
 
-export const BalloonText = styled.p`
-  font-size: var(--size-regular);
-  line-height: 1.2;
+  > p,
+  > input {
+    font-size: var(--size-regular);
+    line-height: 1.2;
+  }
+
+  > input {
+    border: none;
+    outline: none;
+  }
+
+  .errors {
+    margin-top: 15px;
+    margin-bottom: 5px;
+  }
+
+  .error {
+    margin-top: 15px;
+  }
+
+  span {
+    color: var(--color-error);
+    font-weight: 700;
+    display: flex;
+    align-items: flex-end;
+
+    img {
+      width: 12px;
+      margin-right: 5px;
+    }
+  }
 `;
 
 export const BalloonWrapper = styled.div`

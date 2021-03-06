@@ -10,6 +10,7 @@ const Settings = createGlobalStyle`
 
     --color-white: #ffffff;
     --color-background: #161b22;
+    --color-error: #D51406;
   }
 `
 

@@ -1,10 +1,10 @@
 import * as S from './styled';
 
-function Balloon({ message, sender }) {
+function Balloon({ children, from }) {
   return (
-    <S.BalloonWrapper className={`-message-${sender}`}>
+    <S.BalloonWrapper className={`-message-${from}`}>
       <S.BalloonContainer>
-        <S.BalloonText>{message}</S.BalloonText>
+        {children}
       </S.BalloonContainer>
     </S.BalloonWrapper>
   );

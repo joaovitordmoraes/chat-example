@@ -1,8 +1,8 @@
 import SaveButton from './styled'
 
-function Button({ label }) {
+function Button({ children, type }) {
   return (
-    <SaveButton>{label}</SaveButton>
+    <SaveButton type={type}>{children}</SaveButton>
   );
 }
 

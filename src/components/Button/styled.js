@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const SaveButton = styled.button`
-  display: inline-block;
+  display: block;
   font-size: var(--size-regular);
   font-weight: bold;
   text-transform: uppercase;
