@@ -1,5 +1,6 @@
 import Wrapper from "./components/Wrapper";
 import Balloon from "./components/Balloon";
+import Button from "./components/Button";
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
 
       <Balloon message="stars" sender="user" />
 
-      <button>Salvar</button>
+      <Button label="Salvar" />
     </Wrapper>
   );
 }
