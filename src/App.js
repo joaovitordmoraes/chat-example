@@ -1,11 +1,14 @@
 import Wrapper from "./components/Wrapper";
-import Balloon from "./components/Balloon";
-import Button from "./components/Button";
+import Chat from "./components/Chat";
+
+const handleSubmit = values => alert(JSON.stringify(values))
+const initialValues = {}
 
 function App() {
   return (
     <Wrapper>
-      <Balloon message="Olá, eu sou Chatnilson, tudo bem? Para começarmos, preciso saber seu nome." sender="bot" />
+      <Chat handleSubmit={handleSubmit} initialValues={initialValues} />
+      {/* <Balloon message="Olá, eu sou Chatnilson, tudo bem? Para começarmos, preciso saber seu nome." sender="bot" />
 
       <Balloon message="Nome e sobrenome" sender="user" />
 
@@ -25,7 +28,7 @@ function App() {
 
       <Balloon message="stars" sender="user" />
 
-      <Button label="Salvar" />
+      <Button label="Salvar" /> */}
     </Wrapper>
   );
 }
