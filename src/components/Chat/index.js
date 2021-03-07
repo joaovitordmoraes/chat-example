@@ -21,7 +21,9 @@ const validationSchema = Yup.object().shape({
     .required('Campo obrigatório'),
   email: Yup.string()
     .email('Digite um e-mail válido')
-    .required('Campo obrigatório')
+    .required('Campo obrigatório'),
+  stars: Yup.string()
+    .required('Por favor avalie o teste!')
 });
 
 const initialValues = {
@@ -29,7 +31,8 @@ const initialValues = {
   city: '',
   state: '',
   dateofbirth: '',
-  email: ''
+  email: '',
+  stars: ''
 }
 
 const handleSubmit = (values, { resetForm }) => {
@@ -114,6 +117,41 @@ function Chat() {
               <span className="error">
                 <img src={IcoWarning} alt=""/>
                 {errors.email}
+              </span>
+            ) : null}
+          </Balloon>
+
+          <Balloon from="bot">
+            <p>Você finalizou o teste. Faça uma avaliação sobre o processo que realizou até chegar aqui. Nós agradecemos!</p>
+          </Balloon>
+
+          <Balloon from="bot">
+            <div className="stars">
+              <label>
+                <Field type="radio" name="stars" value="1" /> 1
+              </label>
+
+              <label>
+                <Field type="radio" name="stars" value="2" /> 2
+              </label>
+
+              <label>
+                <Field type="radio" name="stars" value="3" /> 3
+              </label>
+
+              <label>
+                <Field type="radio" name="stars" value="4" /> 4
+              </label>
+
+              <label>
+                <Field type="radio" name="stars" value="5" /> 5
+              </label>
+            </div>
+
+            {errors.stars && touched.stars ? (
+              <span className="error">
+                <img src={IcoWarning} alt=""/>
+                {errors.stars}
               </span>
             ) : null}
           </Balloon>

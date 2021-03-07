@@ -21,6 +21,10 @@ export const BalloonContainer = styled.div`
     outline: none;
   }
 
+  > label {
+    display: inline-block;
+  }
+
   .errors {
     margin-top: 15px;
     margin-bottom: 5px;
