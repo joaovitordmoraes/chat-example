@@ -15,15 +15,22 @@ const validationSchema = Yup.object().shape({
   state: Yup.string()
     .min(2, 'Digite uma estado válido')
     .required('Estado é um campo obrigatório'),
-  birthdate: Yup
-    .date('Digite uma data de nascimento válida')
+  dateofbirth: Yup.date()
+    .max(new Date(), 'Digite uma data válida')
+    .nullable()
     .required('Campo obrigatório'),
   email: Yup.string()
     .email('Digite um e-mail válido')
     .required('Campo obrigatório')
 });
 
-const initialValues = {}
+const initialValues = {
+  name: '',
+  city: '',
+  state: '',
+  date: '',
+  email: ''
+}
 
 const handleSubmit = (values) => {
   console.log(JSON.stringify(values))
@@ -80,11 +87,11 @@ function Chat() {
           </Balloon>
 
           <Balloon from="user">
-            <Field name="birthdate" placeholder="Digite sua data de nascimento" type="date" />
-            {errors.birthdate && touched.birthdate ? (
+            <Field name="dateofbirth" placeholder="Digite sua data de nascimento" type="date" />
+            {errors.dateofbirth && touched.dateofbirth ? (
               <span className="error">
                 <img src={IcoWarning} alt=""/>
-                {errors.birthdate}
+                {errors.dateofbirth}
               </span>
             ) : null}
           </Balloon>
