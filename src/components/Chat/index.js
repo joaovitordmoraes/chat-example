@@ -28,15 +28,16 @@ const initialValues = {
   name: '',
   city: '',
   state: '',
-  date: '',
+  dateofbirth: '',
   email: ''
 }
 
-const handleSubmit = (values) => {
+const handleSubmit = (values, { resetForm }) => {
   console.log(JSON.stringify(values))
   axios.post('https://6042d0197f50e000173ac94b.mockapi.io/api/v1/users', values)
     .then(response => {
       console.log(response);
+      resetForm();
     })
     .catch(error => {
       console.log(error)
