@@ -1,5 +1,6 @@
 import * as Yup from 'yup';
 import { Formik, Form, Field } from 'formik';
+import axios from 'axios';
 
 import Balloon from '../Balloon';
 import Button from '../Button';
@@ -33,6 +34,13 @@ const initialValues = {
 
 const handleSubmit = (values) => {
   console.log(JSON.stringify(values))
+  axios.post('https://6042d0197f50e000173ac94b.mockapi.io/api/v1/users', values)
+    .then(response => {
+      console.log(response);
+    })
+    .catch(error => {
+      console.log(error)
+    });
 }
 
 function Chat() {
