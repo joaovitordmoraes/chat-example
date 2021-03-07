@@ -17,7 +17,6 @@ const validationSchema = Yup.object().shape({
     .required('Estado é um campo obrigatório'),
   dateofbirth: Yup.date()
     .max(new Date(), 'Digite uma data válida')
-    .nullable()
     .required('Campo obrigatório'),
   email: Yup.string()
     .email('Digite um e-mail válido')
@@ -43,7 +42,7 @@ function Chat() {
       validationSchema={validationSchema}
       onSubmit={handleSubmit} 
     >
-      {({ errors, touched }) => (
+      {({ errors, touched, values }) => (
         <Form>
           <Balloon from="bot">
             <p>Olá, eu sou Chatnilson, tudo bem? Para começarmos, preciso saber seu nome.</p>
@@ -60,7 +59,7 @@ function Chat() {
           </Balloon>
 
           <Balloon from="bot">
-            <p>Que satisfação, [Nome completo]. Agora que sei seu nome, qual a cidade e estado que você mora?</p>
+            <p>Que satisfação, {values.name !== '' ? values.name : '[Nome Completo]'}. Agora que sei seu nome, qual a cidade e estado que você mora?</p>
           </Balloon>
 
           <Balloon from="user">
