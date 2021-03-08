@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import EmptyStar from '../../images/star-empty.svg';
+import FullStar from '../../images/star-full.svg';
 
 export const BalloonContainer = styled.div`
   background-color: var(--color-white);
@@ -21,8 +23,46 @@ export const BalloonContainer = styled.div`
     outline: none;
   }
 
-  > label {
+  .stars {
+    position: relative;
     display: inline-block;
+
+    &:not(:checked) {
+      
+      > input {
+        position: absolute;
+        left: -99999px;
+      }
+
+      > label {
+        background-image: url(${EmptyStar});
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 30px;
+        height: 30px;
+        text-indent: -99999px;
+        cursor: pointer;
+        transition: background-image 150ms linear;
+        float: right;
+
+        &:hover,
+        &:hover ~ label {
+          background-image: url(${FullStar});
+          transition: background-image 150ms linear;
+        }
+        
+        &:not(:first-child) {
+          padding-right: 10px;
+        }
+      }
+    }
+
+    > input:checked {
+      & ~ label {
+        background-image: url(${FullStar});
+      }
+    }
+
   }
 
   .errors {

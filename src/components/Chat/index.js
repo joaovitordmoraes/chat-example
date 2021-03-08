@@ -125,28 +125,25 @@ function Chat() {
             <p>Você finalizou o teste. Faça uma avaliação sobre o processo que realizou até chegar aqui. Nós agradecemos!</p>
           </Balloon>
 
-          <Balloon from="bot">
-            <div className="stars">
-              <label>
-                <Field type="radio" name="stars" value="1" /> 1
-              </label>
+          <Balloon from="user">
+            <fieldset className="stars">
+              
+              <Field type="radio" id="star5" name="stars" value="5" />
+              <label htmlFor="star5">Star 5</label>
 
-              <label>
-                <Field type="radio" name="stars" value="2" /> 2
-              </label>
+              <Field type="radio" id="star4" name="stars" value="4" />
+              <label htmlFor="star4">Star 4</label>
 
-              <label>
-                <Field type="radio" name="stars" value="3" /> 3
-              </label>
+              <Field type="radio" id="star3" name="stars" value="3" />
+              <label htmlFor="star3">Star 3</label>
 
-              <label>
-                <Field type="radio" name="stars" value="4" /> 4
-              </label>
+              <Field type="radio" id="star2" name="stars" value="2" />
+              <label htmlFor="star2">Star 2</label>
 
-              <label>
-                <Field type="radio" name="stars" value="5" /> 5
-              </label>
-            </div>
+              <Field type="radio" id="star1" name="stars" value="1" />
+              <label htmlFor="star1">Star 1</label>
+
+            </fieldset>
 
             {errors.stars && touched.stars ? (
               <span className="error">
