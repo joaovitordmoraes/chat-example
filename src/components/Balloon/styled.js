@@ -85,6 +85,32 @@ export const BalloonContainer = styled.div`
       margin-right: 5px;
     }
   }
+
+  > button {
+    height: 35px;
+    border-radius: 50px;
+    border: none;
+    background-color: var(--color-success);
+    transition: background-color 150ms linear;
+    font-size: var(--size-regular);
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--color-white);
+    margin-top: 20px;
+    outline: none;
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--color-success-hover);
+      transition: background-color 150ms linear;
+    }
+
+    &:disabled {
+      background-color: var(--color-gray);
+      transition: background-color 150ms linear;
+      cursor: not-allowed;
+    }
+  }
 `;
 
 export const BalloonWrapper = styled.div`

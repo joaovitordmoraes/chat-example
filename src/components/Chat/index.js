@@ -47,8 +47,7 @@ function Chat() {
   const handleSubmit = (values, { resetForm }) => {
     console.log(JSON.stringify(values))
     axios.post('https://6042d0197f50e000173ac94b.mockapi.io/api/v1/users', values)
-      .then(response => {
-        console.log(response);
+      .then(() => {
         resetForm();
         setSecondDialog(false);
         setThirdDialog(false);
@@ -92,15 +91,15 @@ function Chat() {
 
           <Balloon from="user">
             <Field name="name" placeholder="Digite seu nome completo" type="text" />
-            {values.name.length >= 2 ? 
-              <button type="button" onClick={handleDialog}>confirmar</button>
-            : <button type="button" onClick={handleDialog} disabled>confirmar</button>}
             {errors.name && touched.name ? (
               <span className="error">
                 <img src={IcoWarning} alt=""/>
                 {errors.name}
               </span>
             ) : null}
+            {values.name.length >= 2 ? 
+              <button type="button" onClick={handleDialog}>confirmar</button>
+            : <button type="button" onClick={handleDialog} disabled>confirmar</button>}
           </Balloon>
 
           {secondDialog ? 
@@ -126,9 +125,6 @@ function Chat() {
 
               <Field name="city" placeholder="Cidade" type="text" /> 
               <Field name="state" placeholder="Estado" type="text" /> 
-              {values.city && values.state ? 
-                <button type="button" onClick={handleDialog}>confirmar</button>
-              : <button type="button" onClick={handleDialog} disabled>confirmar</button>}
               {errors.city && touched.city ? (
                 <div className="errors">
                   <span>
@@ -143,6 +139,9 @@ function Chat() {
                   {errors.state}
                 </span>
               ) : null}
+              {values.city && values.state ? 
+                <button type="button" onClick={handleDialog}>confirmar</button>
+              : <button type="button" onClick={handleDialog} disabled>confirmar</button>}
             </Balloon>
             </>
           : null}
@@ -155,15 +154,15 @@ function Chat() {
 
             <Balloon from="user">
               <Field name="dateofbirth" placeholder="Digite sua data de nascimento" type="date" />
-              {values.dateofbirth ? 
-                <button type="button" onClick={handleDialog}>confirmar</button>
-              : <button type="button" onClick={handleDialog} disabled>confirmar</button>}
               {errors.dateofbirth && touched.dateofbirth ? (
                 <span className="error">
                   <img src={IcoWarning} alt=""/>
                   {errors.dateofbirth}
                 </span>
               ) : null}
+              {values.dateofbirth ? 
+                <button type="button" onClick={handleDialog}>confirmar</button>
+              : <button type="button" onClick={handleDialog} disabled>confirmar</button>}
             </Balloon>
             </>
           : null }
@@ -176,15 +175,15 @@ function Chat() {
 
             <Balloon from="user">
               <Field name="email" placeholder="Digite seu e-mail" type="email" />
-              {values.email ? 
-                <button type="button" onClick={handleDialog}>confirmar</button>
-              : <button type="button" onClick={handleDialog} disabled>confirmar</button>}
               {errors.email && touched.email ? (
                 <span className="error">
                   <img src={IcoWarning} alt=""/>
                   {errors.email}
                 </span>
               ) : null}
+              {values.email ? 
+                <button type="button" onClick={handleDialog}>confirmar</button>
+              : <button type="button" onClick={handleDialog} disabled>confirmar</button>}
             </Balloon>
             </>
           : null }
@@ -214,9 +213,6 @@ function Chat() {
                 <label htmlFor="star1">Star 1</label>
 
               </fieldset>
-              {values.stars ? 
-                <button type="button" onClick={handleDialog}>confirmar</button>
-              : <button type="button" onClick={handleDialog} disabled>confirmar</button>}
 
               {errors.stars && touched.stars ? (
                 <span className="error">
@@ -224,6 +220,9 @@ function Chat() {
                   {errors.stars}
                 </span>
               ) : null}
+              {values.stars ? 
+                <button type="button" onClick={handleDialog}>confirmar</button>
+              : <button type="button" onClick={handleDialog} disabled>confirmar</button>}
             </Balloon>
             </>
           : null }
