@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import * as Yup from 'yup';
 import { Formik, Form, Field } from 'formik';
+import { motion } from 'framer-motion';
 
 import Balloon from '../Balloon';
 import Button from '../Button';
@@ -85,11 +86,31 @@ function Chat() {
     >
       {({ errors, touched, values }) => (
         <Form>
-          <Balloon from="bot">
+          <Balloon 
+            from="bot"
+            animationTransition={{
+              delay: 0,
+              duration: 0.5
+            }}
+            animationVariants={{
+              show: { opacity: 1, x: '0' },
+              hidden: { opacity: 0, x: '-50%' }
+            }}
+          >
             <p>Olá, eu sou Chatnilson, tudo bem? Para começarmos, preciso saber seu nome.</p>
           </Balloon>
 
-          <Balloon from="user">
+          <Balloon 
+            from="user"
+            animationTransition={{
+              delay: 0.8,
+              duration: 0.5
+            }}
+            animationVariants={{
+              show: { opacity: 1, x: '0' },
+              hidden: { opacity: 0, x: '50%' }
+            }}
+          >
             <Field name="name" placeholder="Digite seu nome completo" type="text" />
             {errors.name && touched.name ? (
               <span className="error">
@@ -104,11 +125,31 @@ function Chat() {
 
           {secondDialog ? 
             <>
-            <Balloon from="bot">
+            <Balloon 
+              from="bot"
+              animationTransition={{
+                delay: 0.5,
+                duration: 0.5
+              }}
+              animationVariants={{
+                show: { opacity: 1, x: '0' },
+                hidden: { opacity: 0, x: '-50%' }
+              }}
+            >
               <p>Que satisfação, {values.name !== '' ? values.name : '[Nome Completo]'}. Agora que sei seu nome, qual a cidade e estado que você mora?</p>
             </Balloon>
 
-            <Balloon from="user">
+            <Balloon 
+              from="user"
+              animationTransition={{
+                delay: 1.3,
+                duration: 0.5
+              }}
+              animationVariants={{
+                show: { opacity: 1, x: '0' },
+                hidden: { opacity: 0, x: '50%' }
+              }}
+            >
               {/* <Field as="select" name="city">
                 <option value="" disabled>Cidade</option>
                 {cities.map((city) => (
@@ -148,11 +189,31 @@ function Chat() {
 
           {thirdDialog ? 
             <>
-            <Balloon from="bot">
+            <Balloon 
+              from="bot"
+              animationTransition={{
+                delay: 0.5,
+                duration: 0.5
+              }}
+              animationVariants={{
+                show: { opacity: 1, x: '0' },
+                hidden: { opacity: 0, x: '-50%' }
+              }}
+            >
               <p>Legal, agora que sabemos sua cidade e estado. Quando foi que você nasceu?</p>
             </Balloon>
 
-            <Balloon from="user">
+            <Balloon 
+              from="user"
+              animationTransition={{
+                delay: 1.3,
+                duration: 0.5
+              }}
+              animationVariants={{
+                show: { opacity: 1, x: '0' },
+                hidden: { opacity: 0, x: '50%' }
+              }}
+            >
               <Field name="dateofbirth" placeholder="Digite sua data de nascimento" type="date" />
               {errors.dateofbirth && touched.dateofbirth ? (
                 <span className="error">
@@ -169,11 +230,31 @@ function Chat() {
 
           {fourthDialog ? 
             <>
-            <Balloon from="bot">
+            <Balloon 
+              from="bot"
+              animationTransition={{
+                delay: 0.5,
+                duration: 0.5
+              }}
+              animationVariants={{
+                show: { opacity: 1, x: '0' },
+                hidden: { opacity: 0, x: '-50%' }
+              }}
+            >
               <p>Agora me fala teu e-mail, por gentileza.</p>
             </Balloon>
 
-            <Balloon from="user">
+            <Balloon 
+              from="user"
+              animationTransition={{
+                delay: 1.3,
+                duration: 0.5
+              }}
+              animationVariants={{
+                show: { opacity: 1, x: '0' },
+                hidden: { opacity: 0, x: '50%' }
+              }}
+            >
               <Field name="email" placeholder="Digite seu e-mail" type="email" />
               {errors.email && touched.email ? (
                 <span className="error">
@@ -190,11 +271,31 @@ function Chat() {
 
           {finalDialog ?
             <>
-            <Balloon from="bot">
+            <Balloon 
+              from="bot"
+              animationTransition={{
+                delay: 0.5,
+                duration: 0.5
+              }}
+              animationVariants={{
+                show: { opacity: 1, x: '0' },
+                hidden: { opacity: 0, x: '-50%' }
+              }}
+            >
               <p>Você finalizou o teste. Faça uma avaliação sobre o processo que realizou até chegar aqui. Nós agradecemos!</p>
             </Balloon>
 
-            <Balloon from="user">
+            <Balloon 
+              from="user"
+              animationTransition={{
+                delay: 1.3,
+                duration: 0.5
+              }}
+              animationVariants={{
+                show: { opacity: 1, x: '0' },
+                hidden: { opacity: 0, x: '50%' }
+              }}
+            >
               <fieldset className="stars">
                 
                 <Field type="radio" id="star5" name="stars" value="5" />
@@ -228,7 +329,20 @@ function Chat() {
           : null }
 
           {submitDialog ?
-            <Button type="submit">Salvar</Button>
+            <motion.div
+              transition={{
+                delay: 0.5,
+                duration: 0.5
+              }}
+              variants={{
+                show: { opacity: 1, scale: '1' },
+                hidden: { opacity: 0, scale: '0' }
+              }}
+              initial="hidden"
+              animate="show"
+            >
+              <Button type="submit">Salvar</Button>
+            </motion.div>
           : null }
 
         </Form>
