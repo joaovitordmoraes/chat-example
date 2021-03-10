@@ -38,7 +38,7 @@ const initialValues = {
 }
 
 function Chat() {
-
+  const [firstDialog, setFirstDialog] = useState(true);
   const [secondDialog, setSecondDialog] = useState(false);
   const [thirdDialog, setThirdDialog] = useState(false);
   const [fourthDialog, setFourthDialog] = useState(false);
@@ -50,11 +50,15 @@ function Chat() {
     axios.post('https://6042d0197f50e000173ac94b.mockapi.io/api/v1/users', values)
       .then(() => {
         resetForm();
+        setFirstDialog(false);
         setSecondDialog(false);
         setThirdDialog(false);
         setFourthDialog(false);
         setFinalDialog(false);
         setSubmitDialog(false);
+        setTimeout(() => {
+          setFirstDialog(true);
+        }, 500);
       })
       .catch(error => {
         console.log(error)
@@ -86,42 +90,47 @@ function Chat() {
     >
       {({ errors, touched, values }) => (
         <Form>
-          <Balloon 
-            from="bot"
-            animationTransition={{
-              delay: 0,
-              duration: 0.5
-            }}
-            animationVariants={{
-              show: { opacity: 1, x: '0' },
-              hidden: { opacity: 0, x: '-50%' }
-            }}
-          >
-            <p>Olá, eu sou Chatnilson, tudo bem? Para começarmos, preciso saber seu nome.</p>
-          </Balloon>
+          {firstDialog ? 
+            <>
+            <Balloon 
+              from="bot"
+              animationTransition={{
+                delay: 0,
+                duration: 0.5
+              }}
+              animationVariants={{
+                show: { opacity: 1, x: '0' },
+                hidden: { opacity: 0, x: '-50%' }
+              }}
+            >
+              <p>Olá, eu sou Chatnilson, tudo bem? Para começarmos, preciso saber seu nome.</p>
+            </Balloon>
 
-          <Balloon 
-            from="user"
-            animationTransition={{
-              delay: 0.8,
-              duration: 0.5
-            }}
-            animationVariants={{
-              show: { opacity: 1, x: '0' },
-              hidden: { opacity: 0, x: '50%' }
-            }}
-          >
-            <Field name="name" placeholder="Digite seu nome completo" type="text" />
-            {errors.name && touched.name ? (
-              <span className="error">
-                <img src={IcoWarning} alt=""/>
-                {errors.name}
-              </span>
-            ) : null}
-            {values.name.length >= 2 ? 
-              <button type="button" onClick={handleDialog}>confirmar</button>
-            : <button type="button" onClick={handleDialog} disabled>confirmar</button>}
-          </Balloon>
+            <Balloon 
+              from="user"
+              animationTransition={{
+                delay: 0.8,
+                duration: 0.5
+              }}
+              animationVariants={{
+                show: { opacity: 1, x: '0' },
+                hidden: { opacity: 0, x: '50%' }
+              }}
+            >
+              <Field name="name" placeholder="Digite seu nome completo" type="text" />
+              {errors.name && touched.name ? (
+                <span className="error">
+                  <img src={IcoWarning} alt=""/>
+                  {errors.name}
+                </span>
+              ) : null}
+              {values.name.length >= 2 ? 
+                <button type="button" onClick={handleDialog}>confirmar</button>
+              : <button type="button" onClick={handleDialog} disabled>confirmar</button>}
+            </Balloon>
+            </>
+          : null }
+
 
           {secondDialog ? 
             <>
@@ -185,7 +194,7 @@ function Chat() {
               : <button type="button" onClick={handleDialog} disabled>confirmar</button>}
             </Balloon>
             </>
-          : null}
+          : null }
 
           {thirdDialog ? 
             <>
