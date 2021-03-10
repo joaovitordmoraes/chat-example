@@ -3,6 +3,7 @@ import axios from 'axios';
 import * as Yup from 'yup';
 import { Formik, Form, Field } from 'formik';
 import { motion } from 'framer-motion';
+import InputMask from 'react-input-mask';
 
 import Balloon from '../Balloon';
 import Button from '../Button';
@@ -18,8 +19,7 @@ const validationSchema = Yup.object().shape({
   state: Yup.string()
     .min(2, 'Digite uma estado válido')
     .required('Estado é um campo obrigatório'),
-  dateofbirth: Yup.date()
-    .max(new Date(), 'Digite uma data válida')
+  dateofbirth: Yup.string()
     .required('Campo obrigatório'),
   email: Yup.string()
     .email('Digite um e-mail válido')
@@ -159,22 +159,13 @@ function Chat() {
                 hidden: { opacity: 0, x: '50%' }
               }}
             >
-              {/* <Field as="select" name="city">
-                <option value="" disabled>Cidade</option>
-                {cities.map((city) => (
-                  <option key={city.id} value={city.nome}>{city.nome}</option>
-                ))}
-              </Field> */}
+              <div className="group-fields">
+                <label htmlFor="city">Cidade:</label>
+                <Field id="city" name="city" placeholder="Digite a cidade" type="text" />
 
-              {/* <Field as="select" name="state">
-                  <option value="" disabled>Estado</option>
-                {states.map((state) => (
-                  <option key={state.id} value={state.sigla}>{state.nome}</option>
-                ))}
-              </Field> */}
-
-              <Field name="city" placeholder="Cidade" type="text" /> 
-              <Field name="state" placeholder="Estado" type="text" /> 
+                <label htmlFor="state">Estado:</label>
+                <Field id="state" name="state" placeholder="Digite o Estado" type="text" /> 
+              </div>
               {errors.city && touched.city ? (
                 <div className="errors">
                   <span>
@@ -223,7 +214,16 @@ function Chat() {
                 hidden: { opacity: 0, x: '50%' }
               }}
             >
-              <Field name="dateofbirth" placeholder="Digite sua data de nascimento" type="date" />
+              <Field name="dateofbirth">
+                {({field}) => (
+                    <InputMask 
+                    {...field} 
+                    mask="99/99/9999"
+                    placeholder="Digite sua data de nascimento"
+                    type="text"
+                  />
+                )}
+              </Field>
               {errors.dateofbirth && touched.dateofbirth ? (
                 <span className="error">
                   <img src={IcoWarning} alt=""/>

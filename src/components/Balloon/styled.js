@@ -13,15 +13,32 @@ export const BalloonContainer = styled.div`
   position: relative;
 
   > p,
-  > input {
+  input,
+  label {
     font-size: var(--size-regular);
     line-height: 1.2;
   }
 
-  > input {
+  input {
     border: none;
     outline: none;
   }
+
+  .group-fields {
+    display: flex;
+    flex-direction: column;
+    
+    label {
+      font-weight: 700;
+      color: var(--color-background);
+
+      &:not(:first-child) {
+        margin-top: 10px;
+      }
+    }
+  
+  }
+
 
   .stars {
     position: relative;
